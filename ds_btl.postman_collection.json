@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "8912b41a-3ba5-469b-9970-4242ee8e5fde",
+		"name": "ds_btl",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39757495"
+	},
+	"item": [
+		{
+			"name": "tu_nhien_search",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/search/keyword?q=clean clothes&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"search",
+						"keyword"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "clean clothes"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "semantic_search",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/search/semantic?q=durable%20fast%20charging%20cable&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"search",
+						"semantic"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "durable%20fast%20charging%20cable"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search_product_amazon",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.amazon.in/LS-LAPSTER-Accessories-Adapter-Recorder/dp/B084BR3QX8/ref=sr_1_282?qid=1672903008&s=computers&sr=1-282",
+					"protocol": "https",
+					"host": [
+						"www",
+						"amazon",
+						"in"
+					],
+					"path": [
+						"LS-LAPSTER-Accessories-Adapter-Recorder",
+						"dp",
+						"B084BR3QX8",
+						"ref=sr_1_282"
+					],
+					"query": [
+						{
+							"key": "qid",
+							"value": "1672903008"
+						},
+						{
+							"key": "s",
+							"value": "computers"
+						},
+						{
+							"key": "sr",
+							"value": "1-282"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "content_based_product_id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/products/<product_id>/similar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"products",
+						"<product_id>",
+						"similar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "extract_keyword",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"I like watch film\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/extract/keywords",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"extract",
+						"keywords"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "i like play game",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
