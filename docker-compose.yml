@@ -17,5 +17,29 @@ services:
       - esdata:/usr/share/elasticsearch/data
     restart: unless-stopped
 
+  web:
+    build: .
+    container_name: web_app
+    environment:
+      - ES_HOST=http://elasticsearch:9200
+      - ES_USER=elastic
+      - ES_PASSWORD=123456
+      - INDEX_NAME=products
+      - GENAI_API_KEY=${GENAI_API_KEY}
+    ports:
+      - "5000:5000"
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+
 volumes:
   esdata:
+
+
+
+
+
+
+
+
+

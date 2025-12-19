@@ -6,13 +6,19 @@ from google import genai
 import json
 import os
 
+# import cors from Flask-CORS
+# from flask_cors import CORS
+
 from dotenv import load_dotenv
 load_dotenv()
 
-ES_HOST = "http://localhost:9200"
-ES_USER = "elastic"
-ES_PASSWORD = "123456"
-INDEX_NAME = "products"
+# Read Elasticsearch and index configuration from environment so the
+# containerized app can connect to the Elasticsearch service defined
+# in docker-compose.
+ES_HOST = os.getenv("ES_HOST", "http://localhost:9200")
+ES_USER = os.getenv("ES_USER", "elastic")
+ES_PASSWORD = os.getenv("ES_PASSWORD", "123456")
+INDEX_NAME = os.getenv("INDEX_NAME", "products")
 
 # configure key for Google GenAI
 GENAI_API_KEY = os.getenv("GENAI_API_KEY", "xyz")
@@ -24,6 +30,7 @@ client = genai.Client(api_key=GENAI_API_KEY)
 # )
 
 app = Flask(__name__)
+# CORS(app)
 
 # Kết nối Elasticsearch
 es = Elasticsearch(

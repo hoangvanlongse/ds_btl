@@ -3,7 +3,7 @@ import pandas as pd
 from elasticsearch import Elasticsearch, helpers
 from sentence_transformers import SentenceTransformer
 
-CSV_PATH = "ecommerce_data.csv"  # bạn copy file /mnt/data/ecommerce_data.csv về project hoặc đổi path
+CSV_PATH = "ecommerce_data.csv"  # copy file /mnt/data/ecommerce_data.csv về project hoặc đổi path
 
 ES_HOST = "http://localhost:9200"
 INDEX_NAME = "products"
@@ -81,7 +81,7 @@ def bulk_index(es, df, combined_texts, embeddings):
             src["combined_text"] = combined_texts.iloc[i]
             src["embedding"] = embeddings[i].tolist()
 
-            # dùng product_id làm _id để dễ get
+            # use product_id as _id easy to get
             yield {
                 "_index": INDEX_NAME,
                 "_id": row["product_id"],
@@ -97,7 +97,7 @@ def main():
 
     combined_texts = build_text_fields(df)
 
-    # Model đa ngôn ngữ (Anh + Việt đều ok)
+    # Model multi language (Anh + Việt)
     model = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
     texts = combined_texts.tolist()
     embeddings = model.encode(texts, batch_size=32, show_progress_bar=True, normalize_embeddings=True)
